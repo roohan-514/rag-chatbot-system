@@ -1,0 +1,38 @@
+RAG Chatbot System - Sample Document
+=====================================
+
+What is Retrieval-Augmented Generation?
+----------------------------------------
+Retrieval-Augmented Generation (RAG) is a technique that combines
+information retrieval with text generation. When a user asks a question,
+the system first retrieves relevant documents from a knowledge base,
+then uses a language model to generate an answer based on those documents.
+
+This approach has several advantages:
+1. The answers are grounded in actual documents, reducing hallucinations.
+2. The knowledge base can be updated without retraining the model.
+3. Users can see which sources were used to generate the answer.
+
+Architecture Overview
+---------------------
+The RAG Chatbot System consists of two main components:
+
+- Backend: A FastAPI server that handles document ingestion and query processing.
+  It uses LangChain for orchestration, ChromaDB for vector storage, and
+  OpenAI GPT (or sentence-transformers) for embeddings and generation.
+
+- Frontend: A React application with a modern chat interface, drag-and-drop
+  document upload, and source citation display.
+
+How It Works
+------------
+1. Ingestion: Documents (PDF, TXT, MD) are loaded, split into chunks,
+   embedded into vector representations, and stored in ChromaDB.
+
+2. Retrieval: When a query is received, the system embeds the query and
+   finds the most similar document chunks using cosine similarity.
+
+3. Generation: The retrieved chunks are passed as context to an LLM,
+   which generates a concise answer with citations to the source documents.
+
+Supported file formats: PDF, TXT, Markdown
